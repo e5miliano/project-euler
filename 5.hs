@@ -4,15 +4,28 @@
 
 -- What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
-main =
-    putStrLn "" 
+--main =
+--    print head(sumOfSquares (map (* 5) [1..])) 
     
 --multiplesOf = head (filter (\x -> x `mod` 2 == 0) (filter (\x -> x `mod` 3 == 0) (filter (\x -> x `mod` 4 == 0) (map (* 5) [1..])) ))
 
-getMultiples n = map (* n) [1..]
+--getMultiples n = map (* n) [1..]
 
-applyFilters (x:xs) (y:ys) = applyFilters xs (filter (\w -> w `mod` x == 0) (y:ys))
+filterMod n  = filter (\x -> x `mod` n == 0)
 
-smallestMultiple n = head ( applyFilters [n-1 ..1] (getMultiples n) )
+--applyModFilter [] = 0 
+applyModFilter n list = applyModFilter n (filterMod n (tail list))
 
---smallestMultiple n = head (getMultiples n) 
+
+--applyFilters [] [] = 10
+--applyFilters [] _ = 10
+--applyFilters _ [] = 10
+--applyFilters (x:xs) (y:ys) = applyFilters xs (filter (\w -> w `mod` x == 0) (y:ys))
+
+--smallestMultiple =  applyFilters [3,2,1] [1..100]
+
+
+
+
+
+
