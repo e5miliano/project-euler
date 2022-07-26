@@ -16,3 +16,5 @@ isPalindrome x = x == reverseInt x
 
 generatePalindromes n = take n (filter isPalindrome [2..])
 
+
+
