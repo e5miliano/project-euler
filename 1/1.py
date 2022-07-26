@@ -7,3 +7,4 @@
 
 number_list = [ x for x in range(1,1000) if x % 5 == 0 and x % 3 == 0]
 print(sum (number_list))
+
