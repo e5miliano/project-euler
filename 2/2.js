@@ -21,7 +21,5 @@ const fib = n => {
 
 }
 
-const fibArrow = n => (n === 0) ? 0 : ((n === 1) ? 1 : (fibArrow(n-1) + fibArrow(n-2) ) )
 
-
-console.log(fibArrow(0))
+console.log(fib(50))
