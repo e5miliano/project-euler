@@ -4,17 +4,10 @@
 
 
 main =
-    print (fst (head (take 1 (triangleMinDivisors 500))))
+    print ((fst . head . take 1) (triangleMinDivisors 100))
        
 
+divisors n = filter (\x -> (n `mod` x) == 0) [1..n]
 triangleNumbers = map (\ x -> sum[1..x]) [1..]
-
-getDivisors n = filter (\x -> (n `mod` x) == 0) [1..n]
-
-getDivisorsTuple n = (n, length (getDivisors n)) 
-
-triangleTuples = map getDivisorsTuple triangleNumbers
-
-triangleTuplesN n = map getDivisorsTuple (take n triangleNumbers) 
-
+triangleTuples = zip triangleNumbers $ map (length . divisors) triangleNumbers
 triangleMinDivisors n = filter (\x -> snd x > n) triangleTuples 
