@@ -2,12 +2,31 @@
 
 //Evaluate the sum of all the amicable numbers under 10000.
 
-properDivisors n = filter (\x -> n `mod` x == 0) [1 .. (n-1)]
+let rangemax = 3000
 
-divs = zip [1..2000] $ map (sum . properDivisors) [1..2000]
-pairs = [(n, m) | (n, nd) <- divs, (m, md) <- divs, n < m, nd == m, md == n]
+const createList = n => {
+  return Array.from([...Array(n).keys()], x => x)
+}
 
+const properDivisors = n =>{
+    let divs = createList(n).filter(x => n % x == 0)
+    return divs
+}
 
-main =
-    print pairs
+const sum = xs => xs.reduce((a, x) => a + x, 0);
 
+let n2divsum= {}
+
+for (let n = 1; n < rangemax; n++) {
+   n2divsum[n] = (sum(properDivisors(n)))
+}
+
+let final = []
+
+for (const [key, value] of Object.entries(n2divsum)) {
+    if ((key < value) && (value <= rangemax) && (n2divsum[value] == key)){
+      final.push([key, value])  
+    }
+}
+
+console.log(final)
